@@ -237,7 +237,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.0865544e+29, y: 9.1977e-41, z: 0, w: 1e-45}
+  m_BoundingSphereOverride: {x: 1.7563698e+25, y: 2.7338853e+20, z: 2.0616457e-19,
+    w: 2.9598673e+21}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -605,6 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a2864e4b5bd96438a8c9c3c8e1e89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravity: 1
 --- !u!1001 &869802009853270137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -700,7 +702,17 @@ PrefabInstance:
     - target: {fileID: 2283264657444933905, guid: c294661da115e03469c9d35bc6fa77d4,
         type: 3}
       propertyPath: maxTime
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283264657444933905, guid: c294661da115e03469c9d35bc6fa77d4,
+        type: 3}
+      propertyPath: minSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283264657444933905, guid: c294661da115e03469c9d35bc6fa77d4,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2818186420442577201, guid: c294661da115e03469c9d35bc6fa77d4,
         type: 3}
@@ -759,6 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3135149867977817260, guid: c294661da115e03469c9d35bc6fa77d4, type: 3}
+    - {fileID: 2283264657444933905, guid: c294661da115e03469c9d35bc6fa77d4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c294661da115e03469c9d35bc6fa77d4, type: 3}
 --- !u!1001 &9137548985140972138
 PrefabInstance:

@@ -16,9 +16,6 @@ public class Throw : MonoBehaviour
     Pool pool;
     Timer timer = new Timer();
 
-    /*Random.Range(minAngle, maxAngle);
-       Random.Range(minSpeed, maxSpeed);*/
-
     void Start()
     {
         pool = PoolManager.GetInstance().GetPool("RockPool");
@@ -33,6 +30,8 @@ public class Throw : MonoBehaviour
         {
             PoolObject po = pool.GetPooledObject();
             po.gameObject.transform.position = transform.position;
+            po.transform.Rotate(0, 0, Random.Range(minAngle, maxAngle));
+            po.gameObject.GetComponent<PhysicsScript>().AddForceX(Random.Range(minSpeed, maxSpeed));
             timer.SetTime(Random.Range(minTime, maxTime));
         }
     }
