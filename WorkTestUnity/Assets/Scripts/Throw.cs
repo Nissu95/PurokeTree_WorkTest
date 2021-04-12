@@ -13,23 +13,27 @@ public class Throw : MonoBehaviour
     [SerializeField] float minTime;
     [SerializeField] float maxTime;
 
-    private Pool pool;
+    Pool pool;
+    Timer timer = new Timer();
+
+    /*Random.Range(minAngle, maxAngle);
+       Random.Range(minSpeed, maxSpeed);*/
 
     void Start()
     {
         pool = PoolManager.GetInstance().GetPool("RockPool");
+        timer.SetTime(Random.Range(minTime, maxTime));
     }
 
     void FixedUpdate()
     {
-        /*Random.Range(minAngle, maxAngle);
-        Random.Range(minSpeed, maxSpeed);
-        Random.Range(minTime, maxTime);*/
+        timer.Update();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (timer.TimeUp())
         {
             PoolObject po = pool.GetPooledObject();
             po.gameObject.transform.position = transform.position;
+            timer.SetTime(Random.Range(minTime, maxTime));
         }
     }
 }

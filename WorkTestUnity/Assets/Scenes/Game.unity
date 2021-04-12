@@ -237,7 +237,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9, y: 9, z: -10, w: 9}
+  m_BoundingSphereOverride: {x: 3.0865544e+29, y: 9.1977e-41, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -691,6 +691,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pitcher
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283264657444933905, guid: c294661da115e03469c9d35bc6fa77d4,
+        type: 3}
+      propertyPath: minTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283264657444933905, guid: c294661da115e03469c9d35bc6fa77d4,
+        type: 3}
+      propertyPath: maxTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2818186420442577201, guid: c294661da115e03469c9d35bc6fa77d4,
         type: 3}
