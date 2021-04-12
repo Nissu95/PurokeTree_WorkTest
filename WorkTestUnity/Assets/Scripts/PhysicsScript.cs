@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class PhysicsScript : MonoBehaviour
 {
-    [SerializeField] float gravity;
-
     Vector2 velocity = Vector2.zero;
     //RaycastHit2D hit2D;
 
     void FixedUpdate()
     {
-        AddForceY(-gravity);
+        AddForceY(-GameManager.instance.GetGravity());
 
         //Physics2D.Raycast(transform, )
 
