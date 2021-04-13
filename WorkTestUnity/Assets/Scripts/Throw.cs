@@ -15,11 +15,15 @@ public class Throw : MonoBehaviour
 
     Pool pool;
     Timer timer = new Timer();
+    float angle;
+    float speed;
 
     void Start()
     {
         pool = PoolManager.GetInstance().GetPool("RockPool");
         timer.SetTime(Random.Range(minTime, maxTime));
+        angle = Random.Range(minAngle, maxAngle);
+        speed = Random.Range(minSpeed, maxSpeed);
     }
 
     void FixedUpdate()
@@ -30,9 +34,12 @@ public class Throw : MonoBehaviour
         {
             PoolObject po = pool.GetPooledObject();
             po.gameObject.transform.position = transform.position;
-            po.transform.Rotate(0, 0, Random.Range(minAngle, maxAngle));
-            po.gameObject.GetComponent<PhysicsScript>().AddForceX(Random.Range(minSpeed, maxSpeed));
+            po.gameObject.transform.Rotate(0, 0, angle);
+            po.gameObject.GetComponent<PhysicsScript>().AddForce(transform.right * speed);
+            //po.gameObject.GetComponent<PhysicsScript>().AddForce(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed);
             timer.SetTime(Random.Range(minTime, maxTime));
+            angle = Random.Range(minAngle, maxAngle);
+            speed = Random.Range(minSpeed, maxSpeed);
         }
     }
 }
