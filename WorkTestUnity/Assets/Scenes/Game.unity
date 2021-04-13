@@ -237,7 +237,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 6.2391955e+22, y: 1.799917e+31, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -605,7 +605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a2864e4b5bd96438a8c9c3c8e1e89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0.1
+  gravity: 0.5
+  deceleration: 0.5
 --- !u!1001 &869802009853270137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -692,21 +693,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pitcher
-      objectReference: {fileID: 0}
-    - target: {fileID: 1723076989628112941, guid: c294661da115e03469c9d35bc6fa77d4,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1723076989628112941, guid: c294661da115e03469c9d35bc6fa77d4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1723076989628112941, guid: c294661da115e03469c9d35bc6fa77d4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2283264657444933905, guid: c294661da115e03469c9d35bc6fa77d4,
         type: 3}

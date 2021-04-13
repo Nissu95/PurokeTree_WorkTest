@@ -35,7 +35,8 @@ public class Throw : MonoBehaviour
             PoolObject po = pool.GetPooledObject();
             po.gameObject.transform.position = transform.position;
             po.gameObject.transform.Rotate(0, 0, angle);
-            po.gameObject.GetComponent<PhysicsScript>().AddForce(transform.right * speed);
+            po.gameObject.GetComponent<PhysicsScript>().SetVelocity(po.gameObject.transform.right * speed);
+            //po.gameObject.GetComponent<PhysicsScript>().AddForceX(po.gameObject.transform.right.x * speed);
             //po.gameObject.GetComponent<PhysicsScript>().AddForce(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed);
             timer.SetTime(Random.Range(minTime, maxTime));
             angle = Random.Range(minAngle, maxAngle);
