@@ -94,4 +94,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorTag: Floor
+  springBoxTag: Player
   timeToRecycle: 1

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RockScript : MonoBehaviour
 {
     [SerializeField] string floorTag;
+    [SerializeField] string springBoxTag;
     [SerializeField] float timeToRecycle;
 
     Vector2 velocity = Vector2.zero;
@@ -35,6 +36,12 @@ public class RockScript : MonoBehaviour
                 if (timer.TimeUp())
                     GetComponent<PoolObject>().Recycle();
             }
+            else if (hit2D.transform.tag == springBoxTag)
+            {
+                SetVelocityY(velocity.y * -hit2D.collider.GetComponent<SpringBoxScript>().GetVerticalBounceFactor());
+                SetVelocityX(velocity.x * hit2D.collider.GetComponent<SpringBoxScript>().GetHorizontalBounceFactor());
+            }
+
         }
         else
             AddForceY(-GameManager.instance.GetGravity());
