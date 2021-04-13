@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicsScript : MonoBehaviour
+public class RockScript : MonoBehaviour
 {
     [SerializeField] string floorTag;
+    [SerializeField] float timeToRecycle;
 
     Vector2 velocity = Vector2.zero;
+    Timer timer = new Timer();
     RaycastHit2D hit2D;
     float yv = 0;
+
+    void Start()
+    {
+        timer.SetTime(timeToRecycle);
+    }
 
     void FixedUpdate()
     {
@@ -18,11 +25,15 @@ public class PhysicsScript : MonoBehaviour
         {
             if (hit2D.transform.tag == floorTag)
             {
+                timer.Update();
                 SetVelocityY(0);
+
                 if (velocity.x > 0)
                     AddForceX(-GameManager.instance.GetDeceleration());
                 else
                     SetVelocityX(0);
+                if (timer.TimeUp())
+                    GetComponent<PoolObject>().Recycle();
             }
         }
         else
