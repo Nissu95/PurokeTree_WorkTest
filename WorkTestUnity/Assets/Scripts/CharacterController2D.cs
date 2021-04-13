@@ -10,11 +10,17 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField] float maxSpeed;
     [SerializeField] float acceleration;
-    
+
+    SpriteRenderer sp;
     float moveInput;
     float currentSpeed = 0;
     State state = 0;
-    
+
+    void Start()
+    {
+        sp = GetComponent<SpriteRenderer>();
+    }
+
     void FixedUpdate()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
@@ -28,6 +34,7 @@ public class CharacterController2D : MonoBehaviour
                     currentSpeed = maxSpeed;
 
                 state = (State)moveInput;
+                sp.flipX = false;
                 transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                 break;
             case 0:
@@ -70,6 +77,7 @@ public class CharacterController2D : MonoBehaviour
                     currentSpeed = -maxSpeed;
 
                 state = (State)moveInput;
+                sp.flipX = true;
                 transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                 break;
         }
