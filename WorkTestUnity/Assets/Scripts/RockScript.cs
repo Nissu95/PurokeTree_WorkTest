@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class RockScript : MonoBehaviour
 {
-    [SerializeField] string floorTag;
-    [SerializeField] string springBoxTag;
     [SerializeField] float timeToRecycle;
+    [SerializeField] int value = 1;
 
     Vector2 velocity = Vector2.zero;
     Timer timer = new Timer();
     RaycastHit2D hit2D;
-    float yv = 0;
 
     void Start()
     {
@@ -22,7 +20,37 @@ public class RockScript : MonoBehaviour
     {
         hit2D = Physics2D.Raycast(transform.position, -Vector2.up, 0.05f);
 
+
         if (hit2D.collider != null)
+        {
+            switch (hit2D.transform.tag)
+            {
+                case "Floor":
+                    timer.Update();
+                    SetVelocityY(0);
+
+                    if (velocity.x > 0)
+                        AddForceX(-GameManager.instance.GetDeceleration());
+                    else
+                        SetVelocityX(0);
+                    if (timer.TimeUp())
+                        GetComponent<PoolObject>().Recycle();
+                    break;
+                case "Player":
+                    SetVelocityY(velocity.y * -hit2D.collider.GetComponent<SpringBoxScript>().GetVerticalBounceFactor());
+                    SetVelocityX(velocity.x * hit2D.collider.GetComponent<SpringBoxScript>().GetHorizontalBounceFactor());
+                    break;
+                case "Finish":
+                    GetComponent<PoolObject>().Recycle();
+                    GameManager.instance.AddRockAmount(value);
+                    Debug.Log(GameManager.instance.GetRockAmount());
+                    break;
+            }
+        }
+        else
+            AddForceY(-GameManager.instance.GetGravity());
+
+        /*if (hit2D.collider != null)
         {
             if (hit2D.transform.tag == floorTag)
             {
@@ -44,7 +72,7 @@ public class RockScript : MonoBehaviour
 
         }
         else
-            AddForceY(-GameManager.instance.GetGravity());
+            AddForceY(-GameManager.instance.GetGravity());*/
 
         transform.Translate(velocity * Time.fixedDeltaTime);
     }

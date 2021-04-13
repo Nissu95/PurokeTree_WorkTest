@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float deceleration;
 
+    int rockAmount = 0;
+
     void Awake()
     {
         DontDestroyOnLoad(this);
@@ -26,6 +28,16 @@ public class GameManager : MonoBehaviour
     public float GetDeceleration()
     {
         return deceleration;
+    }
+
+    public int GetRockAmount()
+    {
+        return rockAmount;
+    }
+
+    public void AddRockAmount(int amount)
+    {
+        rockAmount += amount;
     }
 
 }
