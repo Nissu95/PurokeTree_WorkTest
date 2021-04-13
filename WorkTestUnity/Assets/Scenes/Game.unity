@@ -237,8 +237,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.7563698e+25, y: 2.7338853e+20, z: 2.0616457e-19,
-    w: 2.9598673e+21}
+  m_BoundingSphereOverride: {x: 6.2391955e+22, y: 1.799917e+31, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -606,7 +605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a2864e4b5bd96438a8c9c3c8e1e89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 1
+  gravity: 0.5
+  deceleration: 0.5
 --- !u!1001 &869802009853270137
 PrefabInstance:
   m_ObjectHideFlags: 0

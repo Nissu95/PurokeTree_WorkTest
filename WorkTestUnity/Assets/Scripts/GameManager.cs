@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] float gravity;
+    [SerializeField] float deceleration;
 
     void Awake()
     {
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
     public float GetGravity()
     {
         return gravity;
+    }
+
+    public float GetDeceleration()
+    {
+        return deceleration;
     }
 
 }
