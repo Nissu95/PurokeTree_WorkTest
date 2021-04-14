@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float deceleration;
     [SerializeField] int rockAmountCoinAppear;
+    [SerializeField] float coinDisappearTime;
 
     int rockAmount = 0;
     int coins = 0;
@@ -58,5 +59,10 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int _coins)
     {
         coins += _coins;
+    }
+
+    public float GetCoinDisappearTime()
+    {
+        return coinDisappearTime;
     }
 }

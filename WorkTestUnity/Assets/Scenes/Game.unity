@@ -425,7 +425,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 7.34685e-40, w: -1.177e-42}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1026,6 +1026,7 @@ MonoBehaviour:
   gravity: 0.5
   deceleration: 0.5
   rockAmountCoinAppear: 4
+  coinDisappearTime: 2.5
 --- !u!1001 &869802009853270137
 PrefabInstance:
   m_ObjectHideFlags: 0
