@@ -25,7 +25,7 @@ public class LocationGuide : MonoBehaviour
 
     public void SetLocationGuide()
     {
-        hit2DUp = Physics2D.Raycast(transform.position, -transform.up, 8.0f, layerMask);
+        hit2DUp = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, layerMask);
 
         if (hit2DUp.collider != null)
         {

@@ -49,10 +49,14 @@ public class RockScript : MonoBehaviour
                     SetVelocityY(velocity.y * -hit2D.collider.GetComponent<SpringBoxScript>().GetVerticalBounceFactor());
                     SetVelocityX(velocity.x * hit2D.collider.GetComponent<SpringBoxScript>().GetHorizontalBounceFactor());
                     break;
-                case "Finish":
+                case "Goal":
                     locationGuide.SetIsOnFloor(true);
                     GetComponent<PoolObject>().Recycle();
                     GameManager.instance.AddRockAmount(value);
+                    break;
+                case "Finish":
+                    locationGuide.SetIsOnFloor(true);
+                    GetComponent<PoolObject>().Recycle();
                     break;
             }
         }
