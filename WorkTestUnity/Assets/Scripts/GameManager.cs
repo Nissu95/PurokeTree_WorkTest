@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int rockAmountCoinAppear;
 
     int rockAmount = 0;
+    int coins = 0;
 
     void Awake()
     {
@@ -52,5 +53,10 @@ public class GameManager : MonoBehaviour
         {
             rockAmount += 1;
         }
+    }
+
+    public void AddCoins(int _coins)
+    {
+        coins += _coins;
     }
 }
