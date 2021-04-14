@@ -10,16 +10,19 @@ public class RockScript : MonoBehaviour
     Vector2 velocity = Vector2.zero;
     Timer timer = new Timer();
     RaycastHit2D hit2D;
+    LocationGuide locationGuide;
 
     void Start()
     {
         timer.SetTime(timeToRecycle);
+        locationGuide = GetComponent<LocationGuide>();
     }
 
     void OnEnable()
     {
         SetVelocity(Vector2.zero);
         transform.rotation = Quaternion.identity;
+        timer.Reset();
     }
 
     void FixedUpdate()
@@ -33,6 +36,7 @@ public class RockScript : MonoBehaviour
                 case "Floor":
                     timer.Update();
                     SetVelocityY(0);
+                    locationGuide.SetIsOnFloor(true);
 
                     if (velocity.x > 0)
                         AddForceX(-GameManager.instance.GetDeceleration());
@@ -46,9 +50,9 @@ public class RockScript : MonoBehaviour
                     SetVelocityX(velocity.x * hit2D.collider.GetComponent<SpringBoxScript>().GetHorizontalBounceFactor());
                     break;
                 case "Finish":
+                    locationGuide.SetIsOnFloor(true);
                     GetComponent<PoolObject>().Recycle();
                     GameManager.instance.AddRockAmount(value);
-                    Debug.Log(GameManager.instance.GetRockAmount());
                     break;
             }
         }
