@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] float deceleration;
     [SerializeField] int rockAmountCoinAppear;
     [SerializeField] float coinDisappearTime;
+    [SerializeField] GameObject locationGuideGO;
+    [SerializeField] Transform floorTrans;
+
+    List<LocationGuide> lLocationGuides = new List<LocationGuide>();
 
     int rockAmount = 0;
     int coins = 0;
@@ -21,6 +25,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         else
             instance = this;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            rockAmount += 1;
+        }
+
+        LocalizationGuide();
     }
 
     public float GetGravity()
@@ -48,14 +62,6 @@ public class GameManager : MonoBehaviour
         return rockAmountCoinAppear;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            rockAmount += 1;
-        }
-    }
-
     public void AddCoins(int _coins)
     {
         coins += _coins;
@@ -65,4 +71,47 @@ public class GameManager : MonoBehaviour
     {
         return coinDisappearTime;
     }
+
+    public float GetFloorY()
+    {
+        return floorTrans.position.y;
+    }
+
+    //--------------------------------------------------------------------
+    //Location Guide Functions
+    //--------------------------------------------------------------------
+
+    public GameObject GetLocationGuideGO()
+    {
+        return locationGuideGO;
+    }
+
+    void LocalizationGuide()
+    {
+        LocationGuide[] aAux = FindObjectsOfType<LocationGuide>();
+        float fAux = Mathf.Infinity;
+        int iAux = 0;
+
+        if (lLocationGuides.Count > 0)
+            lLocationGuides.Clear();
+
+        for (int i = 0; i < aAux.Length; i++)
+            if (!aAux[i].GetIsOnFloor())
+                lLocationGuides.Add(aAux[i]);
+
+        for (int i = 0; i < lLocationGuides.Count; i++)
+        {
+            float aux = lLocationGuides[i].CalculateDistanceToFloor();
+            if (aux < fAux)
+            {
+                fAux = aux;
+                iAux = i;
+            }
+        }
+
+        if (lLocationGuides.Count > 0 && lLocationGuides[iAux] != null)
+            lLocationGuides[iAux].SetLocationGuide();
+
+    }
+    //--------------------------------------------------------------------
 }

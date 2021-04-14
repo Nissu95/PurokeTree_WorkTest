@@ -4,23 +4,56 @@ using UnityEngine;
 
 public class LocationGuide : MonoBehaviour
 {
-    [SerializeField] GameObject locationGuide;
     [SerializeField] LayerMask layerMask;
 
-    RaycastHit2D hit2DRight;
+    RaycastHit2D hit2DUp;
+    GameObject locationGuide;
 
-    /*private void FixedUpdate()
+    float floorY;
+    bool isOnFloor = false;
+
+    void Start()
     {
-        hit2DRight = Physics2D.Raycast(transform.position, Vector2.right, 8.0f, layerMask);
+        locationGuide = GameManager.instance.GetLocationGuideGO();
+        floorY = GameManager.instance.GetFloorY();
+    }
 
-        Debug.DrawRay(transform.position, Vector2.right);
+    void OnEnable()
+    {
+        isOnFloor = false;
+    }
 
-        if (hit2DRight.collider != null)
+    public void SetLocationGuide()
+    {
+        hit2DUp = Physics2D.Raycast(transform.position, -transform.up, 8.0f, layerMask);
+
+        if (hit2DUp.collider != null)
         {
-            if (hit2DRight.transform.tag == "Floor")
+            if (hit2DUp.transform.tag == "Floor" && locationGuide != null)
             {
-                Debug.Log("asdadas");
+                locationGuide.transform.position = hit2DUp.point;
+                locationGuide.SetActive(true);
             }
         }
-    }*/
+    }
+
+    public float CalculateDistanceToFloor()
+    {
+        return transform.position.y - floorY;
+    }
+
+    public void SetFloorY(float _FloorY)
+    {
+        floorY = _FloorY;
+    }
+
+    public void SetIsOnFloor(bool _IsOnFloor)
+    {
+        isOnFloor = _IsOnFloor;
+    }
+
+    public bool GetIsOnFloor()
+    {
+        return isOnFloor;
+    }
 }
