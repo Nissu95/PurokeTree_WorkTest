@@ -6,7 +6,7 @@ public class SpawnCoin : MonoBehaviour
 {
     [SerializeField] GameObject coin;
 
-    [SerializeField] List<SpawnerAvailable> spawnerAvailables = new List<SpawnerAvailable>();
+    List<SpawnerAvailable> spawnerAvailables = new List<SpawnerAvailable>();
 
     int lastRockAmount = 0;
 
@@ -15,20 +15,25 @@ public class SpawnCoin : MonoBehaviour
         InitializeList();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (GameManager.instance.GetRockAmount() != lastRockAmount &&
             GameManager.instance.GetRockAmount() % GameManager.instance.GetRockAmountCoinAppear() == 0)
         {
             CheckList();
             int aux = Random.Range(0, spawnerAvailables.Count);
+            Instantiate(coin, spawnerAvailables[aux].transform);
             lastRockAmount = GameManager.instance.GetRockAmount();
+            InitializeList();
         }
     }
 
     void InitializeList()
     {
         SpawnerAvailable[] aux = GetComponentsInChildren<SpawnerAvailable>();
+
+        if (spawnerAvailables.Count > 0)
+            spawnerAvailables.Clear();
 
         for (int i = 0; i < aux.Length; i++)
             spawnerAvailables.Add(aux[i]);

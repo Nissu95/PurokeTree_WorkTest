@@ -150,7 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 898153292480175162, guid: 1e70a27a9ef625142956118467bb3fb7, type: 3}
-  spawnerAvailables: []
 --- !u!4 &142873950
 Transform:
   m_ObjectHideFlags: 0
