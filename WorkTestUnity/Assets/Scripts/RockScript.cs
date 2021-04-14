@@ -26,7 +26,6 @@ public class RockScript : MonoBehaviour
     {
         hit2D = Physics2D.Raycast(transform.position, -Vector2.up, 0.05f);
 
-
         if (hit2D.collider != null)
         {
             switch (hit2D.transform.tag)

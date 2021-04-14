@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8418984854519502713}
   - component: {fileID: 3298285997284465666}
   - component: {fileID: 8812369787172836363}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spring Box
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 869802010404569450}
   - component: {fileID: 869802010404569451}
   - component: {fileID: 8747044862764044832}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}

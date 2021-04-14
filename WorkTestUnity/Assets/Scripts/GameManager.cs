@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] float gravity;
     [SerializeField] float deceleration;
+    [SerializeField] int rockAmountCoinAppear;
 
     int rockAmount = 0;
 
@@ -40,4 +41,16 @@ public class GameManager : MonoBehaviour
         rockAmount += amount;
     }
 
+    public int GetRockAmountCoinAppear()
+    {
+        return rockAmountCoinAppear;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            rockAmount += 1;
+        }
+    }
 }
