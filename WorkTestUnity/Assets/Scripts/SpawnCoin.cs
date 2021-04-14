@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SpawnCoin : MonoBehaviour
 {
-    [SerializeField] GameObject coin;
-
     List<SpawnerAvailable> spawnerAvailables = new List<SpawnerAvailable>();
 
+    Pool pool;
     int lastRockAmount = 0;
 
-    void Awake()
+    void Start()
     {
         InitializeList();
+        pool = PoolManager.GetInstance().GetPool("CoinsPool");
     }
 
     void FixedUpdate()
@@ -22,7 +22,10 @@ public class SpawnCoin : MonoBehaviour
         {
             CheckList();
             int aux = Random.Range(0, spawnerAvailables.Count);
-            Instantiate(coin, spawnerAvailables[aux].transform);
+
+            PoolObject po = pool.GetPooledObject();
+            po.gameObject.transform.position = spawnerAvailables[aux].transform.position;
+
             lastRockAmount = GameManager.instance.GetRockAmount();
             InitializeList();
         }
