@@ -20,7 +20,7 @@ public class PoolManager : MonoBehaviour
     void Awake()
     {
 
-        //DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
         if (instance != null)
         {
             Debug.LogError("Pool Manager duplicado", gameObject);
