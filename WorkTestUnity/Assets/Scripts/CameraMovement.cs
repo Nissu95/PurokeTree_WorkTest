@@ -11,16 +11,21 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] Vector3 offset;
 
     Vector3 velocity = Vector3.zero;
-
-    Vector3 targetPos;
     Vector3 smoothPos;
+    Vector3 targetPos;
 
     void FixedUpdate()
+    {
+        CameraFollow();
+    }
+
+    void CameraFollow()
     {
         targetPos = target.position + offset;
         targetPos.x = Mathf.Clamp(targetPos.x, minCameraPos, maxCameraPos);
         smoothPos = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, followSpeed * Time.fixedDeltaTime);
 
         transform.position = smoothPos;
-    }
+        
+    } 
 }
