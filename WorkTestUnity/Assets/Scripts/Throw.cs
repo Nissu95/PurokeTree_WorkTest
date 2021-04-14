@@ -29,7 +29,6 @@ public class Throw : MonoBehaviour
     void FixedUpdate()
     {
         timer.Update();
-
         if (timer.TimeUp())
         {
             PoolObject po = pool.GetPooledObject();

@@ -10,16 +10,24 @@ public class RockScript : MonoBehaviour
     Vector2 velocity = Vector2.zero;
     Timer timer = new Timer();
     RaycastHit2D hit2D;
+    LocationGuide locationGuide;
 
     void Start()
     {
         timer.SetTime(timeToRecycle);
+        locationGuide = GetComponent<LocationGuide>();
+    }
+
+    void OnEnable()
+    {
+        SetVelocity(Vector2.zero);
+        transform.rotation = Quaternion.identity;
+        timer.Reset();
     }
 
     void FixedUpdate()
     {
         hit2D = Physics2D.Raycast(transform.position, -Vector2.up, 0.05f);
-
 
         if (hit2D.collider != null)
         {
@@ -28,6 +36,7 @@ public class RockScript : MonoBehaviour
                 case "Floor":
                     timer.Update();
                     SetVelocityY(0);
+                    locationGuide.SetIsOnFloor(true);
 
                     if (velocity.x > 0)
                         AddForceX(-GameManager.instance.GetDeceleration());
@@ -40,39 +49,19 @@ public class RockScript : MonoBehaviour
                     SetVelocityY(velocity.y * -hit2D.collider.GetComponent<SpringBoxScript>().GetVerticalBounceFactor());
                     SetVelocityX(velocity.x * hit2D.collider.GetComponent<SpringBoxScript>().GetHorizontalBounceFactor());
                     break;
-                case "Finish":
+                case "Goal":
+                    locationGuide.SetIsOnFloor(true);
                     GetComponent<PoolObject>().Recycle();
                     GameManager.instance.AddRockAmount(value);
-                    Debug.Log(GameManager.instance.GetRockAmount());
+                    break;
+                case "Finish":
+                    locationGuide.SetIsOnFloor(true);
+                    GetComponent<PoolObject>().Recycle();
                     break;
             }
         }
         else
             AddForceY(-GameManager.instance.GetGravity());
-
-        /*if (hit2D.collider != null)
-        {
-            if (hit2D.transform.tag == floorTag)
-            {
-                timer.Update();
-                SetVelocityY(0);
-
-                if (velocity.x > 0)
-                    AddForceX(-GameManager.instance.GetDeceleration());
-                else
-                    SetVelocityX(0);
-                if (timer.TimeUp())
-                    GetComponent<PoolObject>().Recycle();
-            }
-            else if (hit2D.transform.tag == springBoxTag)
-            {
-                SetVelocityY(velocity.y * -hit2D.collider.GetComponent<SpringBoxScript>().GetVerticalBounceFactor());
-                SetVelocityX(velocity.x * hit2D.collider.GetComponent<SpringBoxScript>().GetHorizontalBounceFactor());
-            }
-
-        }
-        else
-            AddForceY(-GameManager.instance.GetGravity());*/
 
         transform.Translate(velocity * Time.fixedDeltaTime);
     }
