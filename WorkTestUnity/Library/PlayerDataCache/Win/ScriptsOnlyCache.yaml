@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - Coins
     - GameManager
     - LocationGuide
+    - MatchWidth
     - Pool
     - PoolManager
     - RockScript
@@ -15,6 +16,7 @@ ScriptsOnlyBuild:
     - Throw
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -70,6 +72,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11434}
     - Class: 114
       Script: {instanceID: 11486}
+    - Class: 114
+      Script: {instanceID: 14784}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -573,6 +577,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 0d15df3d6a0122feac416374f82d7af9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MatchWidth
   platform: 5
   scenePathNames:
   - Assets/Scenes/Game.unity
