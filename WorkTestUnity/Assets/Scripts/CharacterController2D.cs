@@ -26,8 +26,8 @@ public class CharacterController2D : MonoBehaviour
         moveInput = Input.GetAxisRaw("Horizontal");
         switch (moveInput)
         {
+            //Toco para ir a la derecha.
             case 1:
-
                 if (currentSpeed < maxSpeed)
                     currentSpeed += acceleration * Time.fixedDeltaTime;
                 else
@@ -37,6 +37,7 @@ public class CharacterController2D : MonoBehaviour
                 sp.flipX = false;
                 transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                 break;
+            //No toco nada
             case 0:
                 switch (state)
                 {
@@ -69,8 +70,8 @@ public class CharacterController2D : MonoBehaviour
                         break;
                 }
                 break;
+            //Toco para ir a la izquierda
             case -1:
-
                 if (currentSpeed > -maxSpeed)
                     currentSpeed -= acceleration * Time.fixedDeltaTime;
                 else
@@ -81,5 +82,10 @@ public class CharacterController2D : MonoBehaviour
                 transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                 break;
         }
+    }
+
+    public void SetCurrentSpeed(float _currentSpeed)
+    {
+        currentSpeed = _currentSpeed;
     }
 }
