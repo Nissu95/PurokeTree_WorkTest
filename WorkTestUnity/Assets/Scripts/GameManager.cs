@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float coinDisappearTime;
     [SerializeField] GameObject locationGuideGO;
     [SerializeField] Transform floorTrans;
+    [SerializeField] Transform goalTrans;
 
     List<LocationGuide> lLocationGuides = new List<LocationGuide>();
 
@@ -77,6 +78,11 @@ public class GameManager : MonoBehaviour
         return floorTrans.position.y;
     }
 
+    public Transform GetGoalTrans()
+    {
+        return goalTrans;
+    }
+
     //--------------------------------------------------------------------
     //Location Guide Functions
     //--------------------------------------------------------------------
@@ -96,7 +102,7 @@ public class GameManager : MonoBehaviour
             lLocationGuides.Clear();
 
         for (int i = 0; i < aAux.Length; i++)
-            if (!aAux[i].GetIsOnFloor())
+            if (aAux[i].GetIsVisible())
                 lLocationGuides.Add(aAux[i]);
 
         for (int i = 0; i < lLocationGuides.Count; i++)
