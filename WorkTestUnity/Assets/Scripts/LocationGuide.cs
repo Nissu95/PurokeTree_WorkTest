@@ -8,25 +8,37 @@ public class LocationGuide : MonoBehaviour
 
     RaycastHit2D hit2DUp;
     GameObject locationGuide;
-
+    RockScript rc;
     float floorY;
-    bool isOnFloor = false;
+    bool isVisible = true;
 
     void Start()
     {
         locationGuide = GameManager.instance.GetLocationGuideGO();
         floorY = GameManager.instance.GetFloorY();
+        rc = GetComponent<RockScript>();
     }
 
     void OnEnable()
     {
-        isOnFloor = false;
+        isVisible = true;
+    }
+
+    void FixedUpdate()
+    {
+        hit2DUp = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, layerMask);
+        if (hit2DUp.collider != null)
+        {
+            if (hit2DUp.transform.tag == "Finish")
+            {
+                isVisible = false;
+                rc.IsLastBounce(true);
+            }
+        }
     }
 
     public void SetLocationGuide()
     {
-        hit2DUp = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, layerMask);
-
         if (hit2DUp.collider != null)
         {
             if (hit2DUp.transform.tag == "Floor" && locationGuide != null)
@@ -47,13 +59,13 @@ public class LocationGuide : MonoBehaviour
         floorY = _FloorY;
     }
 
-    public void SetIsOnFloor(bool _IsOnFloor)
+    public void SetIsVisible(bool _IsVisible)
     {
-        isOnFloor = _IsOnFloor;
+        isVisible = _IsVisible;
     }
 
-    public bool GetIsOnFloor()
+    public bool GetIsVisible()
     {
-        return isOnFloor;
+        return isVisible;
     }
 }
