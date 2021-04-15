@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 20
   acceleration: 10
+  smokeOffset: {x: 0.5, y: 0.2, z: 0}
 --- !u!114 &4363850494869024590
 MonoBehaviour:
   m_ObjectHideFlags: 0

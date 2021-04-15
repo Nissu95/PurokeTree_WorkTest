@@ -1233,7 +1233,7 @@ Camera:
   far clip plane: 1000
   field of view: 49.04245
   orthographic: 1
-  orthographic size: 5.4128766
+  orthographic size: 5.264579
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1988,6 +1988,91 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1694616861
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5460034806062751988, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751989, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_Name
+      value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751989, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460034806062751991, guid: 21f27589bee0e42459b90df586e04654,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21f27589bee0e42459b90df586e04654, type: 3}
+--- !u!212 &1694616862 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5460034806062751988, guid: 21f27589bee0e42459b90df586e04654,
+    type: 3}
+  m_PrefabInstance: {fileID: 1694616861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1719492312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,6 +2676,7 @@ MonoBehaviour:
   locationGuideGO: {fileID: 1760289387}
   floorTrans: {fileID: 1623703575}
   goalTrans: {fileID: 1893781954}
+  smokeSpriteRenderer: {fileID: 1694616862}
 --- !u!1001 &869802009853270137
 PrefabInstance:
   m_ObjectHideFlags: 0

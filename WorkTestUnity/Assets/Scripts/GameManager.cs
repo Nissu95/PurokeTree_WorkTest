@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject locationGuideGO;
     [SerializeField] Transform floorTrans;
     [SerializeField] Transform goalTrans;
+    [SerializeField] SpriteRenderer smokeSpriteRenderer;
 
     List<LocationGuide> lLocationGuides = new List<LocationGuide>();
 
@@ -81,6 +82,11 @@ public class GameManager : MonoBehaviour
     public Transform GetGoalTrans()
     {
         return goalTrans;
+    }
+
+    public SpriteRenderer GetSmokeSpriteRenderer()
+    {
+        return smokeSpriteRenderer;
     }
 
     //--------------------------------------------------------------------

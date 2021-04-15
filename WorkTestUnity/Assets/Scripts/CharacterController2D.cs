@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-    enum State { Right = 1,
-                Idle = 0,
-                Left = -1}
+    enum State
+    {
+        Right = 1,
+        Idle = 0,
+        Left = -1
+    }
 
     [SerializeField] float maxSpeed;
     [SerializeField] float acceleration;
+    [SerializeField] Vector3 smokeOffset;
 
+    AxisState axisState = new AxisState();
+    Animator animator;
     SpriteRenderer sp;
+    SpriteRenderer smokeSP;
     float moveInput;
     float currentSpeed = 0;
     State state = 0;
@@ -19,11 +26,15 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        smokeSP = GameManager.instance.GetSmokeSpriteRenderer();
     }
 
     void FixedUpdate()
     {
+        axisState.Update();
         moveInput = Input.GetAxisRaw("Horizontal");
+
         switch (moveInput)
         {
             //Toco para ir a la derecha.
@@ -35,6 +46,11 @@ public class CharacterController2D : MonoBehaviour
 
                 state = (State)moveInput;
                 sp.flipX = false;
+
+                if (axisState.GetAxisDown())
+                    Smoke(false, moveInput);
+
+                animator.SetBool("isWalking", true);
                 transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                 break;
             //No toco nada
@@ -53,6 +69,7 @@ public class CharacterController2D : MonoBehaviour
                         transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                         break;
                     case State.Idle:
+                        animator.SetBool("isWalking", false);
                         transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                         break;
                     case State.Left:
@@ -79,9 +96,28 @@ public class CharacterController2D : MonoBehaviour
 
                 state = (State)moveInput;
                 sp.flipX = true;
+
+                if (axisState.GetAxisDown())
+                    Smoke(true, moveInput);
+
+                animator.SetBool("isWalking", true);
                 transform.Translate(currentSpeed * Time.fixedDeltaTime, 0, 0);
                 break;
         }
+    }
+
+    void Smoke(bool flip, float moveInput)
+    {
+        Vector2 aux;
+        //smokeSP.enabled = true;
+
+        aux.x = transform.position.x + (-smokeOffset.x * moveInput);
+        aux.y = transform.position.y - smokeOffset.y;
+        smokeSP.transform.position = aux;
+
+        smokeSP.flipX = flip;
+
+        smokeSP.GetComponent<Animator>().SetTrigger("isSmoke");
     }
 
     public void SetCurrentSpeed(float _currentSpeed)
