@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject afterGameMenu;
     [SerializeField] Text rockAmountDisplay;
     [SerializeField] Text coinsAmountDisplay;
+    [SerializeField] Text timeTxt;
 
     Text rockAmountTxt;
     Text coinAmountTxt;
@@ -37,6 +38,12 @@ public class UIManager : MonoBehaviour
             CoinAmountUIUpdate();
             SetActiveGame(true);
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (timeTxt && timeTxt.gameObject.activeInHierarchy)
+            timeTxt.text = "Time:\n" + GameManager.instance.GetTime();
     }
 
     public void RockAmountUIUpdate()
@@ -64,10 +71,11 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    void SetActiveGame(bool active)
+    public void SetActiveGame(bool active)
     {
         rockAmountUI.SetActive(active);
         coinAmountUI.SetActive(active);
+        timeTxt.gameObject.SetActive(active);
         game.SetActive(active);SetActiveAfterMenu(!active);
     }
 

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] float levelDuration;
     [SerializeField] float gravity;
     [SerializeField] float deceleration;
     [SerializeField] int rockAmountCoinAppear;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] SpriteRenderer smokeSpriteRenderer;
 
     List<LocationGuide> lLocationGuides = new List<LocationGuide>();
+    Timer timer = new Timer();
 
     int rockAmount = 0;
     int coins = 0;
@@ -27,11 +29,21 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         else
             instance = this;
+
+        timer.SetTime(levelDuration);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         LocalizationGuide();
+        timer.Update();
+        if (timer.TimeUp())
+            UIManager.instance.SetActiveGame(false);
+    }
+
+    public int GetTime()
+    {
+        return (int)timer.GetTimer() + 1;
     }
 
     public float GetGravity()
