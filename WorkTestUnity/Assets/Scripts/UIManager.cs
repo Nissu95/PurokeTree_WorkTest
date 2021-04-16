@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    [SerializeField] Text rockAmountTxt;
-    [SerializeField] Text coinAmountTxt;
+    [SerializeField] GameObject game;
+    [SerializeField] GameObject rockAmountUI;
+    [SerializeField] GameObject coinAmountUI;
+
+    Text rockAmountTxt;
+    Text coinAmountTxt;
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         if (instance != null)
             Destroy(gameObject);
         else
@@ -21,8 +26,14 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        RockAmountUIUpdate();
-        CoinAmountUIUpdate();
+        if (game)
+        {
+            rockAmountTxt = rockAmountUI.GetComponentInChildren<Text>();
+            coinAmountTxt = coinAmountUI.GetComponentInChildren<Text>();
+            RockAmountUIUpdate();
+            CoinAmountUIUpdate();
+            SetActiveGame(true);
+        }
     }
 
     public void RockAmountUIUpdate()
@@ -35,4 +46,20 @@ public class UIManager : MonoBehaviour
         coinAmountTxt.text = "x " + GameManager.instance.GetCoins();
     }
 
+    public void Play()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    void SetActiveGame(bool active)
+    {
+        game.SetActive(active);
+        rockAmountUI.SetActive(active);
+        coinAmountUI.SetActive(active);
+    }
 }
