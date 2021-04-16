@@ -31,11 +31,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            rockAmount += 1;
-        }
-
         LocalizationGuide();
     }
 
@@ -57,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void AddRockAmount(int amount)
     {
         rockAmount += amount;
+        UIManager.instance.RockAmountUIUpdate();
     }
 
     public int GetRockAmountCoinAppear()
