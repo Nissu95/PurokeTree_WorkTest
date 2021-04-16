@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] Text rockAmountTxt;
+    [SerializeField] Text coinAmountTxt;
 
     void Awake()
     {
@@ -21,10 +22,17 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         RockAmountUIUpdate();
+        CoinAmountUIUpdate();
     }
 
     public void RockAmountUIUpdate()
     {
         rockAmountTxt.text = "x " + GameManager.instance.GetRockAmount();
     }
+
+    public void CoinAmountUIUpdate()
+    {
+        coinAmountTxt.text = "x " + GameManager.instance.GetCoins();
+    }
+
 }

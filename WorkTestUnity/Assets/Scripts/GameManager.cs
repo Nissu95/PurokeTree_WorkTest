@@ -63,6 +63,12 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int _coins)
     {
         coins += _coins;
+        UIManager.instance.CoinAmountUIUpdate();
+    }
+
+    public int GetCoins()
+    {
+        return coins;
     }
 
     public float GetCoinDisappearTime()
