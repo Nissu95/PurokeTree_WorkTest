@@ -13,7 +13,7 @@ public class Throw : MonoBehaviour
     [SerializeField] float minTime;
     [SerializeField] float maxTime;
 
-    [SerializeField] bool isRockInstantiate = false;
+    [SerializeField] bool isRockInstantiate;
 
     Timer timer = new Timer();
     Pool pool;
@@ -30,7 +30,7 @@ public class Throw : MonoBehaviour
         animator = GetComponentInParent<Animator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         timer.Update();
         if (timer.TimeUp())
