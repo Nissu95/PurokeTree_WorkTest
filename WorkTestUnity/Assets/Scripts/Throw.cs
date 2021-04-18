@@ -13,8 +13,11 @@ public class Throw : MonoBehaviour
     [SerializeField] float minTime;
     [SerializeField] float maxTime;
 
-    Pool pool;
+    [SerializeField] bool isRockInstantiate;
+
     Timer timer = new Timer();
+    Pool pool;
+    Animator animator;
     float angle;
     float speed;
 
@@ -22,15 +25,27 @@ public class Throw : MonoBehaviour
     {
         pool = PoolManager.GetInstance().GetPool("RockPool");
         timer.SetTime(Random.Range(minTime, maxTime));
-        angle = Random.Range(minAngle, maxAngle);
-        speed = Random.Range(minSpeed, maxSpeed);
+        /*angle = Random.Range(minAngle, maxAngle);
+        speed = Random.Range(minSpeed, maxSpeed);*/
+        animator = GetComponentInParent<Animator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         timer.Update();
-
         if (timer.TimeUp())
+        {
+            timer.SetTime(Random.Range(minTime, maxTime));
+            angle = Random.Range(minAngle, maxAngle);
+            speed = Random.Range(minSpeed, maxSpeed);
+            animator.SetTrigger("Throw");
+        }
+        InstantiateRock();
+    }
+
+    public void InstantiateRock()
+    {
+        if (isRockInstantiate)
         {
             PoolObject po = pool.GetPooledObject();
             po.gameObject.transform.position = transform.position;
@@ -38,9 +53,6 @@ public class Throw : MonoBehaviour
             po.gameObject.GetComponent<RockScript>().SetVelocity(po.gameObject.transform.right * speed);
             //po.gameObject.GetComponent<RockScript>().AddForceX(po.gameObject.transform.right.x * speed);
             //po.gameObject.GetComponent<RockScript>().AddForce(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed);
-            timer.SetTime(Random.Range(minTime, maxTime));
-            angle = Random.Range(minAngle, maxAngle);
-            speed = Random.Range(minSpeed, maxSpeed);
         }
     }
 }
