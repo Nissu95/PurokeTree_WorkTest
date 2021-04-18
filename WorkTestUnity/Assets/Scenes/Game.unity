@@ -1340,7 +1340,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: NaN, y: 1.2913e-41, z: 5.88357e-39, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4249,7 +4249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a2864e4b5bd96438a8c9c3c8e1e89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 50
+  levelDuration: 7000
   gravity: 0.5
   deceleration: 0.5
   rockAmountCoinAppear: 4
@@ -4465,16 +4465,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728053625114884001, guid: c294661da115e03469c9d35bc6fa77d4,
-        type: 3}
-      propertyPath: minTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728053625114884001, guid: c294661da115e03469c9d35bc6fa77d4,
-        type: 3}
-      propertyPath: maxTime
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3135149867977817260, guid: c294661da115e03469c9d35bc6fa77d4, type: 3}

@@ -25,8 +25,6 @@ public class Throw : MonoBehaviour
     {
         pool = PoolManager.GetInstance().GetPool("RockPool");
         timer.SetTime(Random.Range(minTime, maxTime));
-        /*angle = Random.Range(minAngle, maxAngle);
-        speed = Random.Range(minSpeed, maxSpeed);*/
         animator = GetComponentInParent<Animator>();
     }
 
@@ -49,10 +47,7 @@ public class Throw : MonoBehaviour
         {
             PoolObject po = pool.GetPooledObject();
             po.gameObject.transform.position = transform.position;
-            po.gameObject.transform.Rotate(0, 0, angle);
-            po.gameObject.GetComponent<RockScript>().SetVelocity(po.gameObject.transform.right * speed);
-            //po.gameObject.GetComponent<RockScript>().AddForceX(po.gameObject.transform.right.x * speed);
-            //po.gameObject.GetComponent<RockScript>().AddForce(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed);
+            po.gameObject.GetComponent<RockScript>().AddForce(Mathf.Cos(angle * Mathf.Deg2Rad) * speed, Mathf.Sin(angle * Mathf.Deg2Rad) * speed);
         }
     }
 }
