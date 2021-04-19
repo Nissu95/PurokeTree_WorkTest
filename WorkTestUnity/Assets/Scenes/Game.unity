@@ -4249,7 +4249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a2864e4b5bd96438a8c9c3c8e1e89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 7000
+  levelDuration: 50
   gravity: 0.5
   deceleration: 0.5
   rockAmountCoinAppear: 4
