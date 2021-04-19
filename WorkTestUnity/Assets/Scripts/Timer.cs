@@ -30,4 +30,9 @@ public class Timer
     {
         timer -= Time.fixedDeltaTime;
     }
+
+    public float GetTimer()
+    {
+        return timer;
+    }
 }

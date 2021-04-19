@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1591146989179239935}
   - component: {fileID: 1532312747911735692}
   - component: {fileID: 1994381058675542361}
+  - component: {fileID: 6974758565524165464}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5404213952980518896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.7057695, y: -0.21244816, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,7 +94,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75f23c3825966c49a88d29587025681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorTag: Floor
-  springBoxTag: Player
-  goalTag: Finish
   timeToRecycle: 1
+  value: 1
+--- !u!114 &6974758565524165464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404213952980518896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4db683737a686458c5ec3f51e7435c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 3072
