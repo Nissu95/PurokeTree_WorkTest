@@ -42,6 +42,7 @@ public class RockScript : MonoBehaviour
                         timer.Update();
                         SetVelocityY(0);
                         locationGuide.SetIsVisible(false);
+                        locationGuide.Deactivate();
 
                         if (velocity.x > 0)
                             AddForceX(-GameManager.instance.GetDeceleration());
@@ -57,10 +58,6 @@ public class RockScript : MonoBehaviour
                     case "Goal":
                         Score();
                         break;
-                    /*case "Finish":
-                        locationGuide.SetIsVisible(false);
-                        GetComponent<PoolObject>().Recycle();
-                        break;*/
                 }
             }
             else
