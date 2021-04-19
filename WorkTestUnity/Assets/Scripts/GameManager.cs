@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] float levelDuration;
     [SerializeField] float gravity;
     [SerializeField] float deceleration;
     [SerializeField] int rockAmountCoinAppear;
@@ -13,29 +14,36 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject locationGuideGO;
     [SerializeField] Transform floorTrans;
     [SerializeField] Transform goalTrans;
+    [SerializeField] SpriteRenderer smokeSpriteRenderer;
 
     List<LocationGuide> lLocationGuides = new List<LocationGuide>();
+    Timer timer = new Timer();
 
     int rockAmount = 0;
     int coins = 0;
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         if (instance != null)
             Destroy(gameObject);
         else
             instance = this;
+
+        timer.SetTime(levelDuration);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            rockAmount += 1;
-        }
-
         LocalizationGuide();
+        timer.Update();
+        if (timer.TimeUp())
+            UIManager.instance.SetActiveGame(false);
+    }
+
+    public int GetTime()
+    {
+        return (int)timer.GetTimer() + 1;
     }
 
     public float GetGravity()
@@ -56,6 +64,7 @@ public class GameManager : MonoBehaviour
     public void AddRockAmount(int amount)
     {
         rockAmount += amount;
+        UIManager.instance.RockAmountUIUpdate();
     }
 
     public int GetRockAmountCoinAppear()
@@ -66,6 +75,12 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int _coins)
     {
         coins += _coins;
+        UIManager.instance.CoinAmountUIUpdate();
+    }
+
+    public int GetCoins()
+    {
+        return coins;
     }
 
     public float GetCoinDisappearTime()
@@ -81,6 +96,11 @@ public class GameManager : MonoBehaviour
     public Transform GetGoalTrans()
     {
         return goalTrans;
+    }
+
+    public SpriteRenderer GetSmokeSpriteRenderer()
+    {
+        return smokeSpriteRenderer;
     }
 
     //--------------------------------------------------------------------
