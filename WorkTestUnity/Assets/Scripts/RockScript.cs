@@ -11,6 +11,7 @@ public class RockScript : MonoBehaviour
     Timer timer = new Timer();
     RaycastHit2D hit2D;
     LocationGuide locationGuide;
+    float initSpeed;
 
     bool lastBounce = false;
 
@@ -65,9 +66,8 @@ public class RockScript : MonoBehaviour
         }
         else
         {
-            SetVelocity(0, 0);
             Transform target = GameManager.instance.GetGoalTrans();
-            SetVelocity(target.position - transform.position);
+            SetVelocity((target.position - transform.position).normalized * initSpeed);
 
             if (hit2D.collider != null && hit2D.transform.tag == "Goal")
                 Score();
@@ -123,5 +123,10 @@ public class RockScript : MonoBehaviour
     public void IsLastBounce(bool _LastBounce)
     {
         lastBounce = _LastBounce;
+    }
+
+    public void SetSpeed(float _Speed)
+    {
+        initSpeed = _Speed;
     }
 }

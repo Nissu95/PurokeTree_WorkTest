@@ -27,7 +27,7 @@ public class LocationGuide : MonoBehaviour
     void FixedUpdate()
     {
         hit2DUp = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, layerMask);
-        Debug.DrawRay(transform.position, -transform.up, Color.red, Mathf.Infinity);
+
         if (hit2DUp.collider != null)
         {
             if (hit2DUp.transform.tag == "Finish")
