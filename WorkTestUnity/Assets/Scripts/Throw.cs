@@ -47,7 +47,9 @@ public class Throw : MonoBehaviour
         {
             PoolObject po = pool.GetPooledObject();
             po.gameObject.transform.position = transform.position;
-            po.gameObject.GetComponent<RockScript>().AddForce(Mathf.Cos(angle * Mathf.Deg2Rad) * speed, Mathf.Sin(angle * Mathf.Deg2Rad) * speed);
+            RockScript rc = po.gameObject.GetComponent<RockScript>();
+            rc.AddForce(Mathf.Cos(angle * Mathf.Deg2Rad) * speed, Mathf.Sin(angle * Mathf.Deg2Rad) * speed);
+            rc.SetSpeed(speed);
         }
     }
 }
