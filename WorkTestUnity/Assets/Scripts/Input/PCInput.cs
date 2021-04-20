@@ -13,7 +13,7 @@ public class PCInput : GeneralInput
         switch (inputState)
         {
             case InputState.Idle:
-                if (Input.GetAxis("Horizontal") < -deadZone || Input.GetAxis("Horizontal") > deadZone)
+                if (moveInput < -deadZone || moveInput > deadZone)
                 {
                     inputState = InputState.Down;
                 }
@@ -24,7 +24,7 @@ public class PCInput : GeneralInput
                 break;
 
             case InputState.Held:
-                if (Input.GetAxis("Horizontal") > -deadZone && Input.GetAxis("Horizontal") < deadZone)
+                if (moveInput > -deadZone && moveInput < deadZone)
                 {
                     inputState = InputState.Up;
                 }
@@ -35,26 +35,4 @@ public class PCInput : GeneralInput
                 break;
         }
     }
-
-    public override bool GetInputDown()
-    {
-        if (inputState == InputState.Down)
-            return true;
-        else
-            return false;
-    }
-
-    public override bool GetInputUp()
-    {
-        if (inputState == InputState.Up)
-            return true;
-        else
-            return false;
-    }
-
-    public override float GetMoveInput()
-    {
-        return moveInput;
-    }
-
 }
