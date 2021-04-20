@@ -226,10 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41db1003de6e3c479963c00dca8188b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAngle: 20
-  maxAngle: 70
-  minSpeed: 5
-  maxSpeed: 8
+  minAngle: 30
+  maxAngle: 80
+  minSpeed: 10
+  maxSpeed: 20
   minTime: 1
   maxTime: 5
   isRockInstantiate: 0

@@ -27,6 +27,7 @@ public class LocationGuide : MonoBehaviour
     void FixedUpdate()
     {
         hit2DUp = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, layerMask);
+
         if (hit2DUp.collider != null)
         {
             if (hit2DUp.transform.tag == "Finish")
@@ -68,4 +69,10 @@ public class LocationGuide : MonoBehaviour
     {
         return isVisible;
     }
+
+    public void Deactivate()
+    {
+        locationGuide.SetActive(false);
+    }
+
 }
