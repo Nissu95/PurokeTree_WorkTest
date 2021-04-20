@@ -15,7 +15,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float acceleration;
     [SerializeField] Vector3 smokeOffset;
 
-    AxisState axisState = new AxisState();
+    //AxisState axisState = new AxisState();
+    
     Animator animator;
     SpriteRenderer sp;
     SpriteRenderer smokeSP;
@@ -32,8 +33,7 @@ public class CharacterController2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        axisState.Update();
-        moveInput = Input.GetAxisRaw("Horizontal");
+        moveInput = InputManager.instance.GetInput().GetMoveInput();
 
         switch (moveInput)
         {
@@ -47,7 +47,7 @@ public class CharacterController2D : MonoBehaviour
                 state = (State)moveInput;
                 sp.flipX = false;
 
-                if (axisState.GetAxisDown())
+                if (InputManager.instance.GetInput().GetInputDown())
                     Smoke(false, moveInput);
 
                 animator.SetBool("isWalking", true);
@@ -97,7 +97,7 @@ public class CharacterController2D : MonoBehaviour
                 state = (State)moveInput;
                 sp.flipX = true;
 
-                if (axisState.GetAxisDown())
+                if (InputManager.instance.GetInput().GetInputDown())
                     Smoke(true, moveInput);
 
                 animator.SetBool("isWalking", true);
@@ -109,7 +109,6 @@ public class CharacterController2D : MonoBehaviour
     void Smoke(bool flip, float moveInput)
     {
         Vector2 aux;
-        //smokeSP.enabled = true;
 
         aux.x = transform.position.x + (-smokeOffset.x * moveInput);
         aux.y = transform.position.y - smokeOffset.y;
